@@ -1,0 +1,109 @@
+import random 
+
+def Consensus(Motifs):
+    count = CountWithPseudocounts(Motifs)
+    consensus = ['']*len(Motifs[0])
+    maxes = [-1]*len(Motifs[0])
+    for j in range(len(Motifs[0])):
+        for i in count.keys():
+            if count[i][j] > maxes[j]:
+                maxes[j] = count[i][j]
+                consensus[j] = i     
+    return ''.join([c for c in consensus])
+
+def Score(Motifs):
+    consensus = Consensus(Motifs)
+    score = 0
+    for j in range(len(Motifs[0])):
+        curr_score = 0
+        for i in range(len(Motifs)):
+            if Motifs[i][j] != consensus[j]:
+                curr_score += 1
+        score += curr_score
+    return score
+
+def Normalize(Probabilities):
+    sum_vals = sum(Probabilities.values())
+    for k in Probabilities.keys():
+        Probabilities[k] /= sum_vals
+    return Probabilities
+
+def WeightedDie(Probabilities):
+    kmer = ''
+    u = random.uniform(0, 1)
+    for p in Probabilities:
+        u -= Probabilities[p]
+        if u <= 0:
+            return p
+
+def Pr(Text, Profile):
+    p = 1
+    for i,t in enumerate(Text):
+        p *= Profile[t][i] 
+    return p
+
+def ProfileGeneratedString(Text, profile, k):
+    n = len(Text)
+    probabilities = {}
+    for i in range(0,n-k+1):
+        probabilities[Text[i:i+k]] = Pr(Text[i:i+k], profile)
+    probabilities = Normalize(probabilities)
+    return WeightedDie(probabilities)
+
+def RandomMotifs(Dna, k, t):
+    rand_kmers = []
+    for i in range(t):
+        rand_k = random.randint(0, len(Dna[i]) - k)
+        rand_kmers.append(Dna[i][rand_k:rand_k+k])
+    return rand_kmers
+
+def CountWithPseudocounts(Motifs):
+    t = len(Motifs)
+    k = len(Motifs[0])
+    count = {'A':[1] * k,'T':[1] * k,'C':[1] * k,'G':[1] * k}
+    for i in range(t):
+        for j in range(k):
+            symbol = Motifs[i][j]
+            count[symbol][j] += 1
+    return count
+
+def ProfileWithPseudocounts(Motifs):
+    count = CountWithPseudocounts(Motifs)
+    t = len(Motifs)
+    k = len(Motifs[0])
+    for i in count.keys():
+        for j in range(k):
+            count[i][j] /= t
+    return count
+
+def GibbsSampler(Dna, k, t, N):
+    BestMotifs = RandomMotifs(Dna, k, t)
+    Motifs = BestMotifs.copy()
+    for j in range(N):
+        i = random.randint(0, t - 1)
+        del Motifs[i]
+        Profile = ProfileWithPseudocounts(Motifs)
+        Motif_i = ProfileGeneratedString(Dna[i], Profile, k)
+        Motifs.insert(i, Motif_i)      
+        if Score(Motifs) < Score(BestMotifs):
+            BestMotifs = Motifs
+    return BestMotifs
+
+Dna = [
+"GCGCCCCGCCCGGACAGCCATGCGCTAACCCTGGCTTCGATGGCGCCGGCTCAGTTAGGGCCGGAAGTCCCCAATGTGGCAGACCTTTCGCCCCTGGCGGACGAATGACCCCAGTGGCCGGGACTTCAGGCCCTATCGGAGGGCTCCGGCGCGGTGGTCGGATTTGTCTGTGGAGGTTACACCCCAATCGCAAGGATGCATTATGACCAGCGAGCTGAGCCTGGTCGCCACTGGAAAGGGGAGCAACATC",
+"CCGATCGGCATCACTATCGGTCCTGCGGCCGCCCATAGCGCTATATCCGGCTGGTGAAATCAATTGACAACCTTCGACTTTGAGGTGGCCTACGGCGAGGACAAGCCAGGCAAGCCAGCTGCCTCAACGCGCGCCAGTACGGGTCCATCGACCCGCGGCCCACGGGTCAAACGACCCTAGTGTTCGCTACGACGTGGTCGTACCTTCGGCAGCAGATCAGCAATAGCACCCCGACTCGAGGAGGATCCCG",
+"ACCGTCGATGTGCCCGGTCGCGCCGCGTCCACCTCGGTCATCGACCCCACGATGAGGACGCCATCGGCCGCGACCAAGCCCCGTGAAACTCTGACGGCGTGCTGGCCGGGCTGCGGCACCTGATCACCTTAGGGCACTTGGGCCACCACAACGGGCCGCCGGTCTCGACAGTGGCCACCACCACACAGGTGACTTCCGGCGGGACGTAAGTCCCTAACGCGTCGTTCCGCACGCGGTTAGCTTTGCTGCC",
+"GGGTCAGGTATATTTATCGCACACTTGGGCACATGACACACAAGCGCCAGAATCCCGGACCGAACCGAGCACCGTGGGTGGGCAGCCTCCATACAGCGATGACCTGATCGATCATCGGCCAGGGCGCCGGGCTTCCAACCGTGGCCGTCTCAGTACCCAGCCTCATTGACCCTTCGACGCATCCACTGCGCGTAAGTCGGCTCAACCCTTTCAAACCGCTGGATTACCGACCGCAGAAAGGGGGCAGGAC",
+"GTAGGTCAAACCGGGTGTACATACCCGCTCAATCGCCCAGCACTTCGGGCAGATCACCGGGTTTCCCCGGTATCACCAATACTGCCACCAAACACAGCAGGCGGGAAGGGGCGAAAGTCCCTTATCCGACAATAAAACTTCGCTTGTTCGACGCCCGGTTCACCCGATATGCACGGCGCCCAGCCATTCGTGACCGACGTCCCCAGCCCCAAGGCCGAACGACCCTAGGAGCCACGAGCAATTCACAGCG",
+"CCGCTGGCGACGCTGTTCGCCGGCAGCGTGCGTGACGACTTCGAGCTGCCCGACTACACCTGGTGACCACCGCCGACGGGCACCTCTCCGCCAGGTAGGCACGGTTTGTCGCCGGCAATGTGACCTTTGGGCGCGGTCTTGAGGACCTTCGGCCCCACCCACGAGGCCGCCGCCGGCCGATCGTATGACGTGCAATGTACGCCATAGGGTGCGTGTTACGGCGATTACCTGAAGGCGGCGGTGGTCCGGA",
+"GGCCAACTGCACCGCGCTCTTGATGACATCGGTGGTCACCATGGTGTCCGGCATGATCAACCTCCGCTGTTCGATATCACCCCGATCTTTCTGAACGGCGGTTGGCAGACAACAGGGTCAATGGTCCCCAAGTGGATCACCGACGGGCGCGGACAAATGGCCCGCGCTTCGGGGACTTCTGTCCCTAGCCCTGGCCACGATGGGCTGGTCGGATCAAAGGCATCCGTTTCCATCGATTAGGAGGCATCAA",
+"GTACATGTCCAGAGCGAGCCTCAGCTTCTGCGCAGCGACGGAAACTGCCACACTCAAAGCCTACTGGGCGCACGTGTGGCAACGAGTCGATCCACACGAAATGCCGCCGTTGGGCCGCGGACTAGCCGAATTTTCCGGGTGGTGACACAGCCCACATTTGGCATGGGACTTTCGGCCCTGTCCGCGTCCGTGTCGGCCAGACAAGCTTTGGGCATTGGCCACAATCGGGCCACAATCGAAAGCCGAGCAG",
+"GGCAGCTGTCGGCAACTGTAAGCCATTTCTGGGACTTTGCTGTGAAAAGCTGGGCGATGGTTGTGGACCTGGACGAGCCACCCGTGCGATAGGTGAGATTCATTCTCGCCCTGACGGGTTGCGTCTGTCATCGGTCGATAAGGACTAACGGCCCTCAGGTGGGGACCAACGCCCCTGGGAGATAGCGGTCCCCGCCAGTAACGTACCGCTGAACCGACGGGATGTATCCGCCCCAGCGAAGGAGACGGCG",
+"TCAGCACCATGACCGCCTGGCCACCAATCGCCCGTAACAAGCGGGACGTCCGCGACGACGCGTGCGCTAGCGCCGTGGCGGTGACAACGACCAGATATGGTCCGAGCACGCGGGCGAACCTCGTGTTCTGGCCTCGGCCAGTTGTGTAGAGCTCATCGCTGTCATCGAGCGATATCCGACCACTGATCCAAGTCGGGGGCTCTGGGGACCGAAGTCCCCGGGCTCGGAGCTATCGGACCTCACGATCACC"
+]
+k, t, N = 15, len(Dna), 100
+
+
+BestMotifs = max([GibbsSampler(Dna, k, t, N) for _ in range(20)])
+print(BestMotifs)
+print(Score(BestMotifs))
