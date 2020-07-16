@@ -47,18 +47,6 @@ def find_euler_path(graph):
                     path.insert(0, neighbor)
         path.insert(0, node)
 
-    # def find_path(node):
-    #     for neighbor in graph[node]:
-    #         edge = "{} -> {}".format(node, neighbor)
-    #         if edge not in visited_edges:
-    #             visited_edges.add(edge)
-    #             if neighbor in graph:
-    #                 find_path(neighbor)
-    #             else:
-    #                 path.append(neighbor)
-    #     path.append(node)
-                
-    # find_path(v0)
     return path
 
 def construct_genome(path):
