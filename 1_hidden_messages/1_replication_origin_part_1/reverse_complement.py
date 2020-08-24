@@ -1,7 +1,6 @@
 def completement(substring):
     complements = {'A':'T', 'C':'G', 'T':'A', 'G':'C'}
     complement = "".join([complements[c] for c in substring][::-1])
-    print(complement)
     return complement
 
 # with open("Vibrio_cholerae.txt", 'r') as handle:

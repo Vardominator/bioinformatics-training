@@ -1,3 +1,5 @@
+import random
+
 def construct_debruijn(k_mers):
     graph = {}
     for i in range(0, len(k_mers)):
@@ -24,10 +26,9 @@ def find_euler_path(graph):
                 incoming_edges[neighbor] = 1
             else:
                 incoming_edges[neighbor] += 1
-    
-    v0 = None
+
     for node in graph:
-        print("Node:{} ; Outgoing:{} ; Incoming:{}".format(node, len(graph[node]), incoming_edges[node]))
+        # print("Node:{} ; Outgoing:{} ; Incoming:{}".format(node, len(graph[node]), incoming_edges[node]))
         if len(graph[node]) > incoming_edges[node]:
             v0 = node
             break
@@ -57,7 +58,6 @@ def construct_genome(path):
     return genome
 
 with open('data/d7.txt', 'r') as f:
-    k_mers_size = f.readline()
     k_mers = f.read().splitlines()
 
 debruijn = construct_debruijn(k_mers)

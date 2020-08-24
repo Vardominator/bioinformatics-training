@@ -6,6 +6,14 @@ def MinimumSkew(Genome):
     positions = [i for i,s in enumerate(skew) if s == min_skew]
     return positions
 
+def MaximumSkew(Genome):
+    positions = [] # output variable
+    # your code here
+    skew = SkewArray(Genome)
+    max_skew = max(skew)
+    positions = [i for i,s in enumerate(skew) if s == max_skew]
+    return positions
+
 # Input:  A String Genome
 # Output: SkewArray(Genome)
 # HINT:   This code should be taken from the last Code Challenge.
@@ -18,12 +26,17 @@ def SkewArray(Genome):
             skew[i + 1] = skew[i] + 1
         else:
             skew[i + 1] = skew[i]
+    print(skew)
     return skew
 
-print(MinimumSkew("CATTCCAGTACTTCGATGATGGCGTGAAGA"))
+with open('data/dataset_7_6.txt', 'r') as f:
+    genome = f.read()
+
+min_skew = MinimumSkew(genome)
+
+print(' '.join([str(s) for s in min_skew]))
 
 
-x=0
-for y in range(0,5):
-    x+=y
-print(x)
+max_skew = MaximumSkew(genome)
+
+print(' '.join([str(s) for s in max_skew]))
