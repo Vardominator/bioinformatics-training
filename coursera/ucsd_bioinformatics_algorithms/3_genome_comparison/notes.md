@@ -123,3 +123,116 @@
 ### Middle Edge in Linear Space Problem: Find a middle edge in the alignment graph in linear space
 * input: two strings and a matrix score
 * output: a middle edge in the alignment graph of these strings
+
+# Genome rearrangmenets and fragility
+## Introduction: Random Breakage Model
+* Mice and men look different, but genetically they are very similar. The genes are just arranged differently.
+* Genome rearrangement: mouse x chromosome to human x chromosome
+  - What are the similarity blocks and how to find them?
+  - What is the evolutionary scenario for transforming one genome into the other?
+* Reversal: reversing ordering of genes as an evolutionary process
+* Are there any rearrangement hotspots in mammalian genomes?
+* Random Breakage Model (RBM) of Chromosome Evolution
+  - Nadeau & Taylor (1984): the first statistical arguments in favor of the RBM
+* Does RBM have predictive power, despite the fact that breakage happens at random places?
+  - Apply N random reversals to a chromosome consisting of M "genes". Can we predict how many blocks of length k will be generated?
+  - Furthermore, if we can predict it, will these predictions fit what we observe in real genomes?
+  - Despite the fact that reversals occur at random positions, we can predict (roughly) how many blocks of each length will be generated. This follows an exponential distribution.
+
+## Reversal
+* Reversal introduced two breakpoints: diseruptions in gene order.
+* Reversal distance: the minimum number of reversals required to transform one permutation into another.
+* Greedy Sorting by Reversal
+
+## Breakpoint Theorem
+* Adjacencies and Breakpoints
+* adjacencies(P) + breakpoints(P) = |P| + 1
+  - What is the number of breakpoints in the identity permutation? 1, 2, 3, ... + n
+* sorting by reversal => breakpoint elimination
+  - How many breakpoints can be eliminated by a single reversal? Reversal has two ends and nothing happens outside of these ends. Only the ends themselves can be breakpoints. Thus, at every step the number of breakpoints can be decreased by at most 2.
+* Breakpoint Theorem: Reversal distance >= breakpoints(P)/2
+
+## Rearrangements in Tumor Genomes
+* Philadelphia Chromosome
+  - abl and bcr genes
+* fusions and fissions
+
+## 2-breaks
+* Want to think of human genome as cyclic because the problem becomes easier without changing the results.
+* Linear to Circular chromosomes
+* 2-break: a reversal that deletes two red edges and replaces them by two other red edges (on the same 4 nodes)
+* 2-break distance d(P, Q): minimum number of 2-breaks transforming genome P into genome Q
+
+## Greedy sorting
+* Element k in permutation P = (p_1..p_n) is sorted if p_k = +k and usorted otherwise
+* P is k-sorted if its first k elements are sorted, but if element k is unsorted.
+* For every k-sorted permutation P, there exists a single reversal, called the k-sorting revrsal, that fixes the first k - 1 elements of P and moves element k to the k-th position. If k is already in the k-th position of P, the k-sorting reversal merely flips -k around. 
+
+# Applying genome rearrangment analysis to find genome fragility
+## Breakpoint graphs
+* Red and blue edges form alternating red-blue cycles
+* cycle(P, Q): number of red-blue alternating cycles
+* Given P, what Genome Q maximizes cycle(P, Q)?
+* Genome rerrangements affect red-blue cycles
+  - Each transformation P -> Q corresponds to a transformation
+
+## 2-break distance theorem
+* We don't know how many breakpoints transform P into Q, but we do now that the breakpoint of P and Q transforms into the breakpoint of Q and Q. Thus, the cycle number changes into the cycle number between Q and Q, which in turn is the number of blocks in Q. 
+* Therefore, the number of red-blue cycles increases by blocks(P,Q) - cycle(P,Q)
+* A 2-break adds 2 new edge edges and therefore creates at most 2 new cycles with 2 new red edges. It removes 2 red edges and therefore destroys at least 1 old cycle with two old edges. Thus, the change in the number of cycles <= 2-1 = 1
+* 2-break distance theorem
+  - a 2-break increases the number of cycles by at most 1
+  - there exists a 2-break increasing the number of cycles by 1
+  - every sorting by 2-breaks must increase the number of cycle by blocks(p,q) - cycle(p,q)
+  - 2-break distance between genomes P and Q: d(p,q) = blocks(p,q) - cycle(p,q)
+* 2-break distance between human and mouse genomes
+  - human and mouse genomes can be decomposed into 280 synteny blocks (at least 0.5 million nucleotides in length)
+  - the breakpoint graph on these blocks as 35 cycles
+  - the 2-break distance between human and mouse:
+    * d(H,M) = blocks(H,M) - cycle(H,M) = 280 - 35 = 245
+  - there are numerous 245-step scenarios
+  - the true scenario may have more than 245 steps
+
+## Rearrangment hotspots in the genome
+* Are there any? yes
+* Is there a model that complies with both the "exponential distribution" and the "breakpoint reuse" tests? yes it is the Fragile Breakage Model
+* Fragile Breakage Model
+  - The genome is a mosaic of:
+    * fragile regions with high propensity for rearrangements and
+    * solid regions with low propensity for rearrangments
+  - fragile regions (regions between consecutive synteny blocks) are small, accounting for less than ~5% of the genome.
+* Does FBM explain both exponential distribution and rearragnment hotspots?
+  - A small number of short fragile regions explain rearrangement hotspots.
+  - If the fragile regions are somewhat randomly distributed throughout the genome, the synteny blocks follow the exponential distribution.
+* Multiply Breakpoint Reuse Test
+* Birth and Death of Fragile Regions
+  - Recent studies revealed evidence for the "birth and death" of the fragile regions, implying that they move to different locations in different lineages.
+  - This led to discovery of the Turnover Fragile Breakage Model (TFBM) that complies with a new Multiple Breakpoint Reuse (MBR) test
+  - TFBM points to locations of the currently fragile regions
+
+## Synteny block construction
+* identitcal and reverse complementary k-mers
+* amounts to constructing diagonals
+* Finding Synteny Blocks Problem: find diagonals in the genomic dot-polot
+  - input: a set of points DotPlot in 2-D
+  - output: a set of diagonals in DotPlot representing synteny blocks
+* Nodes: points in 2-D
+* Edges: connect close points (distance below maxDistance)
+* Synteny Block Generation Algorithm
+
+* Simple
+```
+Synteny(DotPlot, maxDistance, minSize)
+  maxDistance: gap size
+  minSize: minimum synteny block size
+  1. form a graph whose node set is the set of points in DotPlot
+  2. connect two nodes by an edge if the 2-D distance between them is < maxDistance. The connected components in the resulting graph define synteny blocks
+  3. delete small synteny blocks (length < minSize)
+```
+
+## Stepik week 5
+* Solving the 2-break distance problem for genomes P and Q is equivalent to finding a shortest series of 2-breaks transformaing BreakpointGraph(P,Q) into the trivial brekapoint graph. 
+* Since every transformation of P into Q transforms BreakPointGraph(P, Q) into the trivial brekapoint graph BreakpointGraph(Q,Q), any sorting of 2-breaks increases the number of red-blue cycles by: Cycles(Q,Q) - Cycles(P,Q)
+* Cycle Theorem: given genomes P and Q, and 2-break applied to P can increase Cycles(P,Q) by at most 1.
+* There are permutations for which no reversal reduces the number of breakpoints, which means that a greedy algorithm for sorting reversals that reduces the number of breakpoints at each step cannot work. 
+* 2-break distance theorem: the 2-break distance between genomes P and Q is equal to Blocks(P,Q) - Cycles(P,Q)
