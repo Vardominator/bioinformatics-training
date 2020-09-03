@@ -58,11 +58,11 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 # Seminal Papers
 * 1984: [Lengths of chromosomal segments conserved since divergence of man and mouse](https://www.pnas.org/content/81/3/814.short) (Nadeau, Taylor)
 
-# Open questions in research
+# Open research questions
 ## Genome rearrangment
 * Where are the fragile regions located? What causes fragility?
 
-# Notable Companies in this Space
+# Industry
 * DNAnexus
 * Illumina
 * GRAIL
