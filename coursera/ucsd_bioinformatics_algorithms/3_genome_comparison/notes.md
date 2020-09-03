@@ -236,3 +236,15 @@ Synteny(DotPlot, maxDistance, minSize)
 * Cycle Theorem: given genomes P and Q, and 2-break applied to P can increase Cycles(P,Q) by at most 1.
 * There are permutations for which no reversal reduces the number of breakpoints, which means that a greedy algorithm for sorting reversals that reduces the number of breakpoints at each step cannot work. 
 * 2-break distance theorem: the 2-break distance between genomes P and Q is equal to Blocks(P,Q) - Cycles(P,Q)
+
+
+# Final Project
+## FASTA format
+* Text-based format for representing either nucleutide sequences or amino acid (protein) sequences, in which nucleutides or amino acids are represented using single-letter codes.
+* Makes it easy to manipulate and parse sequences using text-processing tools
+## Tasks
+1. Check wehther graicidin synthetase is similar to firefly luciferase. Align gramicidin synthetase against all firefly proteins to see if firefly luciferase really is the most similar to gramcidin synthetase.
+  * Use a heuristic called BLAST: Basic Local Alignment Search Tool. 
+  * *E-value of score S*: expected number of hits in searches of a protein against a random database of the same size. The smaller the E-values, the less likely that the hit resulted from random noise and the more statistically significant the result.
+  * *Percent identity*: percentage of resudies that are identical in the two sequences at the same positions in the alignment
+  * Run only gramicidin synthetase sequences on BLASTp

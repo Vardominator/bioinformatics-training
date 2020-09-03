@@ -22,22 +22,31 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
   - Needleman-Wunch algorithm
   - Hirschberg algorithm
   - Multiple sequence alignment
+  - PAM / BLOSUM scoring matrices
 ## Genome Rearrangement
   - Random Breakage Model / Fragile Breakage Model
   - Synteny block graph / 2-break distance/sorting
 
 # Tools & Databases
-## Genomics Platforms
-  - DNAnexus (thanks for the employment)
-  - Galaxy
-  - Glow
+## Bioinformatics Platforms
+* DNAnexus (thanks for the employment)
+* Galaxy
+* Glow
+## General Platforms with bioinformatics capabilities
+* EMBL-EBI
 ## Motif discovery
-  - Consensus
-  - MEME
+* Consensus
+* MEME
 ## Alignment
-  - BLAST
+* BLAST
+* EMBOSS Water/Needle
+* Clustral Omega
 ## Assembly
-  - Quast
+* Quast
+## File formats
+* FASTA/FASTQ
+* VCF
+* SAM
 
 # Educational Material
 ## Courses
@@ -56,7 +65,8 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
   - Rosalind
 
 # Seminal Papers
-* 1984: [Lengths of chromosomal segments conserved since divergence of man and mouse](https://www.pnas.org/content/81/3/814.short) (Nadeau, Taylor)
+* 1984: [Lengths of chromosomal segments conserved since divergence of man and mouse](https://www.pnas.org/content/81/3/814.short) (Nadeau et. al.)
+* 1990: [Basic local alignment search tool](https://pubmed.ncbi.nlm.nih.gov/2231712/) (Altschul et.al.)
 
 # Open research questions
 ## Genome rearrangment
