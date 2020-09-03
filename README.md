@@ -40,7 +40,7 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Alignment
 * BLAST
 * EMBOSS Water/Needle
-* Clustral Omega
+* Clustal Omega
 ## Assembly
 * Quast
 ## File formats
