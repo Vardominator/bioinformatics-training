@@ -15,17 +15,17 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 # Topics
 ## Motif Finding
 ## Genome Assembly
-  - De Bruijn graphs 
-  - Cyclopeptide sequencing
+* De Bruijn graphs 
+* Cyclopeptide sequencing
 ## Sequence Alignment
-  - Smith-Waterman algorithm
-  - Needleman-Wunch algorithm
-  - Hirschberg algorithm
-  - Multiple sequence alignment
-  - PAM / BLOSUM scoring matrices
+* Smith-Waterman, Needleman-Wunch algorithm, and Hirschberg algorithms
+* Multiple sequence alignment
+* PAM / BLOSUM scoring matrices
 ## Genome Rearrangement
-  - Random Breakage Model / Fragile Breakage Model
-  - Synteny block graph / 2-break distance/sorting
+* Random Breakage, Fragile Breakage, and Whole Genome Duplication models
+* Synteny block graph / 2-break distance/sorting
+## Genomic Data Science
+* Clustering gene expression matrices: k-means, soft k-means, and hierarchical clustering
 
 # Tools & Databases
 ## Bioinformatics Platforms
