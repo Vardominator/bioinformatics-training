@@ -24,6 +24,10 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Genome Rearrangement
 * Random Breakage, Fragile Breakage, and Whole Genome Duplication models
 * Synteny block graph / 2-break distance/sorting
+## Molecular Evolution
+* Additive phylogeny
+* Unweighted Pair Group Method with Arithmetic Mean (UPGMA)
+* Neighbor-joining algorithm
 ## Genomic Data Science
 * Clustering gene expression matrices: k-means, soft k-means, and hierarchical clustering
 
@@ -50,22 +54,25 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 
 # Educational Material
 ## Courses
-  - UCSD Bioinformatics Algorithms 
+* UCSD Bioinformatics Algorithms 
   Specialization (Coursera)
-  - John Hopkins Genomic Data Science (Coursera)
-  - Bioinformatics: Tools for Genome Analysis (John Hopkins AS.410.635.82)
+* John Hopkins Genomic Data Science (Coursera)
+* Bioinformatics: Tools for Genome Analysis (John Hopkins AS.410.635.82)
 ## Textbooks
-  - Bioinformatics Algorithms
-  - Molecular Biology: Principles of Genome Function
-  - Molecular Population Genetics
-  - An Introduction to Population Genetics
+* Bioinformatics Algorithms
+* Molecular Biology: Principles of Genome Function
+* Molecular Population Genetics
+* An Introduction to Population Genetics
 ## Layman Books
-  - The Gene by Siddhartha Mukherjee
+* The Gene by Siddhartha Mukherjee
 ## Problem solving
-  - Rosalind
+* Rosalind
+## Blog posts & other
+* [Resources to become a comp biologist](https://medium.com/deena-does-data-science/resources-to-become-a-computational-biologist-outside-of-academia-39336a6d2059)
 
 # Seminal Papers
 * 1984: [Lengths of chromosomal segments conserved since divergence of man and mouse](https://www.pnas.org/content/81/3/814.short) (Nadeau et. al.)
+* 1987: [The neighbor-joining method](https://academic.oup.com/mbe/article/4/4/406/1029664)
 * 1990: [Basic local alignment search tool](https://pubmed.ncbi.nlm.nih.gov/2231712/) (Altschul et.al.)
 
 # Open research questions
@@ -75,5 +82,6 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 # Industry (should categorize)
 * DNAnexus
 * Illumina
+* Pacific Biosciences
 * GRAIL
 * Freenome
