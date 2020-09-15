@@ -27,7 +27,8 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Molecular Evolution
 * Additive phylogeny
 * Unweighted Pair Group Method with Arithmetic Mean (UPGMA)
-* Neighbor-joining algorithm
+* Neighbor-Joining
+* Maximum Parsimony
 ## Genomic Data Science
 * Clustering gene expression matrices: k-means, soft k-means, and hierarchical clustering
 
@@ -36,6 +37,7 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 * DNAnexus (thanks for the employment)
 * Galaxy
 * Glow
+* BoaG
 ## General Platforms with bioinformatics capabilities
 * EMBL-EBI
 ## Motif discovery
@@ -47,10 +49,14 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 * Clustal Omega
 ## Assembly
 * Quast
+## Molecular Evolution
+* MEGA
 ## File formats
 * FASTA/FASTQ
 * VCF
 * SAM
+## Databases
+* GenBank
 
 # Educational Material
 ## Courses
@@ -66,14 +72,18 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Layman Books
 * The Gene by Siddhartha Mukherjee
 ## Problem solving
+* Stepik
 * Rosalind
 ## Blog posts & other
 * [Resources to become a comp biologist](https://medium.com/deena-does-data-science/resources-to-become-a-computational-biologist-outside-of-academia-39336a6d2059)
 
-# Seminal Papers
+# Seminal Papers & Milestones
+* 1964: [Molecules as Documents of Evolutionary History](http://web.gps.caltech.edu/~tsai/files/GreatPapers/ZuckerkandlPauling_1965.pdf)
 * 1984: [Lengths of chromosomal segments conserved since divergence of man and mouse](https://www.pnas.org/content/81/3/814.short) (Nadeau et. al.)
 * 1987: [The neighbor-joining method](https://academic.oup.com/mbe/article/4/4/406/1029664)
 * 1990: [Basic local alignment search tool](https://pubmed.ncbi.nlm.nih.gov/2231712/) (Altschul et.al.)
+* 2003: [Human Genome Project](https://en.wikipedia.org/wiki/Human_Genome_Project)
+* 2008: [1000 Genomes Project](https://en.wikipedia.org/wiki/1000_Genomes_Project)
 
 # Open research questions
 ## Genome rearrangment

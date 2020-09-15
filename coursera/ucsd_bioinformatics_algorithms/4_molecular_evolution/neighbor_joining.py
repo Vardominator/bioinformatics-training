@@ -6,8 +6,21 @@ def d_star(matrix):
         totals[i] = sum(matrix[i])
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            d_star_mat[i][j] = (n-2)*matrix[i][j] - totals[i] - totals[j]
+            if i != j:
+                d_star_mat[i][j] = (n-2)*matrix[i][j] - totals[i] - totals[j]
 
     return d_star_mat
 
-print(d_star(test_mat)[2][3])
+d = [
+[0,11,11],
+[11,0,15],
+[11,15,0]
+]
+
+for row in d:
+    print(sum(row))
+
+print()
+
+for row in d_star(d):
+    print('\t'.join([str(r) for r in row]))
