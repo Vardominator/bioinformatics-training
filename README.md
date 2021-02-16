@@ -104,3 +104,6 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 * Pacific Biosciences
 * GRAIL
 * Freenome
+
+# Proteomics (TODO)
+...
