@@ -1,0 +1,12 @@
+{
+	"build": {
+		"dockerfile": "../Dockerfile",
+		"args": {
+		}
+	},
+	"mounts": [
+		"source=/Users/varderesbarsegyan/LEARNING/bioinformatics-training,target=/bioinformatics-training,type=bind,consistency=cached",
+	  ],
+	"name": "bioinformatics training container",
+
+}

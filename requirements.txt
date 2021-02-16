@@ -1,0 +1,4 @@
+biopython
+multiqc
+bowtie
+pysam

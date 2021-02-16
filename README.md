@@ -2,17 +2,13 @@
 A collection of educational content and software for learning the beauty of bioinformatics.
 
 # Background
+## Update: February 2021
+I started a new journey at Freenome as a Bioinformatics Research Engineer.
+
+## Update: September 2020
 In September 2019, I started working as a software engineer at DNAnexus. During my first week I joined an internal group called Science Frontiers, which is the equivalent of 20% Projects at Google. Within a few weeks, I began collaborating with a bioinformatician/microbiome specialist on one of his projects involving the clustering of microbial data extracted from the Human Microbiome Project. Humbled by the vastness of this field of research, the dedication of our researchers, and the incredible applications of bioinformatics in general, a deep curiosity formed within me to understand the fundamentals of this science. I began by the picking the brains of the many scientists at the company and reading laymen books such as _The Gene_, whilst making progress in both my work at the company as well as the Science Frontiers project. Then COVID-19 hit. With essentially no social life, I thought this would be as good a time as any to give myself an unofficial degree in bioinformatics, perhaps something that would quickly amount to the equivalent of an undergraduate degree at a notable university.
 
-# Projects
-## Genomic Database Repartitioning
-...
-## Microbiome Clustering
-...
-## KubeGene
-...
-
-# Topics
+# Topics (TODO: add links to everything)
 ## Motif Finding
 ## Genome Assembly
 * De Bruijn graphs 
@@ -43,10 +39,18 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Motif discovery
 * Consensus
 * MEME
-## Alignment
+## Alignment / Mapping
+* Samtools
 * BLAST
 * EMBOSS Water/Needle
 * Clustal Omega
+## Variant calling
+* Samtools
+## Quality Control (QC) / Trimming
+* FastQC
+* Scythe
+* Sickle
+* MultiQC
 ## Assembly
 * Quast
 ## Molecular Evolution
@@ -66,16 +70,21 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 * Bioinformatics: Tools for Genome Analysis (John Hopkins AS.410.635.82)
 ## Textbooks
 * Bioinformatics Algorithms
+* Bioinformatics with Python Cookbook
 * Molecular Biology: Principles of Genome Function
 * Molecular Population Genetics
 * An Introduction to Population Genetics
+## Tutorials
+* [Hadrien](https://www.hadriengourle.com/tutorials)
 ## Layman Books
 * The Gene by Siddhartha Mukherjee
 ## Problem solving
 * Stepik
 * Rosalind
-## Blog posts & other
+## Blogs
 * [Resources to become a comp biologist](https://medium.com/deena-does-data-science/resources-to-become-a-computational-biologist-outside-of-academia-39336a6d2059)
+## Forums
+* Biostars
 
 # Seminal Papers & Milestones
 * 1964: [Molecules as Documents of Evolutionary History](http://web.gps.caltech.edu/~tsai/files/GreatPapers/ZuckerkandlPauling_1965.pdf)
@@ -89,7 +98,7 @@ In September 2019, I started working as a software engineer at DNAnexus. During 
 ## Genome rearrangment
 * Where are the fragile regions located? What causes fragility?
 
-# Industry (should categorize)
+# Industry (TODO: categorize)
 * DNAnexus
 * Illumina
 * Pacific Biosciences
